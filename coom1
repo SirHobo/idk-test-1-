@@ -6,7 +6,7 @@ def Main():
 
         # The choice made must be an integer, and we give it some conditions thorugh if-statements.
         # Also, there is an if-statement in order to prevent error.
-
+        valid = 0
         if option == 1:
             
             # Attempt to get a valid number, valid is the condition that there is a valid input
@@ -15,7 +15,7 @@ def Main():
             # Runs a loop if the question is not fulfilled using the valid varible, in this case, type of Lindermayer system
             while(valid == 0):
                 
-                temp = input("Choose the type of Lindenmayer system:\n 1.Koch System\n 2.Sierpinski System \n ")
+                temp = input("Choose the type of Lindenmayer system:\n 1.Koch System\n 2.Sierpinski System \n")
                 
                 # Filters through different possible cases of answers. If the answer is satisfactory, make valid != 0
                 try: 
@@ -48,8 +48,10 @@ def Main():
                     print("The number of iterations must be positive.")
                 elif N > 9:
                     print('The number of iterations is limited to 9, as to prevent excessive runtime')
+                
+                # Prints out the final "load" of the loading data process, prints out what was chosen, the menu screen will reappear
                 else:
-                    print(LindIter(System, N))
+                    print(f'\nYou have chosen {System} as your Lindenmayer system and chosen {N} number of iterations\n')
                     valid = 1
 
         if option == 2:
@@ -59,6 +61,5 @@ def Main():
         if option == 3:
             print("Goodbye")
             break
-        else:
+        elif valid == 0:
             print("Please select between option 1, 2 or 3.")
-            
