@@ -1,0 +1,64 @@
+def Main():
+    while True:
+
+        # The options are printed
+        option = int(input(print("1.Choose the type of Lindenmayer system and the number of iterations\n2.Generate plot\n3.Quit\nEnter your option: ")))
+
+        # The choice made must be an integer, and we give it some conditions thorugh if-statements.
+        # Also, there is an if-statement in order to prevent error.
+
+        if option == 1:
+            
+            # Attempt to get a valid number, valid is the condition that there is a valid input
+            valid = 0
+            
+            # Runs a loop if the question is not fulfilled using the valid varible, in this case, type of Lindermayer system
+            while(valid == 0):
+                
+                temp = input("Choose the type of Lindenmayer system:\n 1.Koch System\n 2.Sierpinski System \n ")
+                
+                # Filters through different possible cases of answers. If the answer is satisfactory, make valid != 0
+                try: 
+                    systemChoice = int(temp)
+                except ValueError:
+                    print("Please enter an integer option.")
+
+                if systemChoice == 1:
+                    System = "Koch"
+                    valid = 1
+                elif systemChoice == 2:
+                    System = "Sierpinski"
+                    valid = 1
+                else:
+                    print("Please select between option 1 or 2.")
+            
+            valid = 0
+            
+            # Similar system as the previous question, asking iterations
+            while(valid == 0):
+                
+                temp = input("How many iterations would you like? : ")
+                
+                try:
+                    N = int(temp)
+                except ValueError:
+                    print("Please enter an integer option.")
+
+                if N <= 0:
+                    print("The number of iterations must be positive.")
+                elif N > 9:
+                    print('The number of iterations is limited to 9, as to prevent excessive runtime')
+                else:
+                    print(LindIter(System, N))
+                    valid = 1
+
+        if option == 2:
+            # At this point, it is shown how every function in the whole program should run, and what inputs should be used for each of them
+            turtlePlot(turtleGraph(LindIter(System, N), N))
+
+        if option == 3:
+            print("Goodbye")
+            break
+        else:
+            print("Please select between option 1, 2 or 3.")
+            
